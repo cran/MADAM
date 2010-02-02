@@ -74,6 +74,9 @@ Karl Kugler, UMIT
 When performing an ensemble approach with meta-analysis data coming from the same set of studies, the result has to be considered to be biased towards the alternative hypothesis due to correlations within the data. The result has then to be considered for exploratory use only!
 }
 \examples{
+#examples using Rmpi were set inactive for automated testing
+#for increased compability with  Windows
+\dontrun{
 library(genefilter)
 library(snow)
 library(Rmpi)
@@ -92,6 +95,7 @@ perm.RP=10, perm.ENS.RP= 10, perm.ENS.RS= 10, do.ENS.FM= TRUE, cluster= clust, u
 results.dir=getwd(), write.all=FALSE, plot.fdr= FALSE, plot.ranks=FALSE)
 names(res)
 stopCluster(clust)
+}
 }
 \keyword{ manip }
 

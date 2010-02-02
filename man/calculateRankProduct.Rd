@@ -41,6 +41,8 @@ Karl Kugler, UMIT
 \code{\link{calculateRankSum}}, \code{\link{doRP}}
 }
 \examples{
+#examples using Rmpi were set inactive for automated testing
+#for increased compability with  Windows
 \dontrun{
 library(snow)
 library(Rmpi)
