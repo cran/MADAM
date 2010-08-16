@@ -14,6 +14,6 @@ Since for Fisher's formula, signifances of zero would cause a problem (ln(0) == 
  num 1e-06
 }
 \author{
-Karl Kugler, UMIT
+Karl Kugler, karl@eigenlab.net
 }
 \keyword{datasets}

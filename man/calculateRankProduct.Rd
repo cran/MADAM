@@ -17,8 +17,8 @@ A matrix containing rank information from several studies. Features are stored i
   \item{B}{
 The number of permutations used to assess the significance of the rank product.
 }
-  \item{cluster}{
-A snow cluster object. If this package is used without parallel computing facilities, a single core snow cluster has to be established nevertheless. Leaving it to NULL (default) will result in an error.
+ \item{cluster}{
+A snow cluster object. If this package is used without parallel computing facilities, computing time may be much higher.
 }
 }
 \value{
@@ -28,6 +28,9 @@ A data.frame object with 4 columns, where the rownames are the rownames from the
 \item{q.value}{The p-values corrected for the FDR}
 \item{rank}{The rank of a feature, derived by ranking the q.values. Ties are ranked randomly.}
 }
+\note{
+This function is based on the implementation of the RankProd package Version 2.20.0 by Hong F et al. Any modification made by MADAM developers are only for enabling cluster computing.
+}
 \references{
 RankProd: a bioconductor package for detecting differentially expressed genes in meta-analysis.
 Hong F, Breitling R, McEntee CW, Wittner BS, Nemhauser JL, Chory J.
@@ -35,23 +38,15 @@ Bioinformatics. 2006 Nov 15;22(22):2825-7. Epub 2006 Sep 18.
 
 }
 \author{
-Karl Kugler, UMIT
+Karl Kugler, karl@eigenlab.net
 }
 \seealso{
-\code{\link{calculateRankSum}}, \code{\link{doRP}}
+\code{\link{calculateRankSum}}
 }
 \examples{
-#examples using Rmpi were set inactive for automated testing
-#for increased compability with  Windows
-\dontrun{
-library(snow)
-library(Rmpi)
 set.seed(123)
 M <- sapply(1:5, sample, x=1:10, size=10)
-clust <- makeCluster(1, type="MPI")
-res <- calculateRankProduct(data=M, B = 100, cluster = clust)
-stopCluster(clust)
+res <- calculateRankProduct(data=M, B = 100, cluster = NULL)
 res
-}
 }
 \keyword{ univar }

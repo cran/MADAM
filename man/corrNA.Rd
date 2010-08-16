@@ -55,20 +55,21 @@ The method returns the list of ExpressionSets that was provided, but now with mi
 
 }
 \author{
-Karl Kugler, UMIT
+Karl Kugler, karl@eigenlab.net
 }
 \seealso{
 \code{\link{corrNA}}
 }
 \examples{
-set.seed(123)
-es1 <- new("ExpressionSet", exprs=matrix(runif(100,1,10), nrow=10))
-es2 <- new("ExpressionSet", exprs=matrix(runif(100,1,10), nrow=10))
-es3 <- new("ExpressionSet", exprs=matrix(runif(100,1,10), nrow=10))
-exprs(es1)[1,5:6] <- NA
-sum(is.na(exprs(es1)))
-es <- corrNA(list(es1, es2, es3), method="madam", 
-cl=list(c(rep(0,5), rep(1,5)),c(rep(0,5), rep(1,5)), c(rep(0,5), rep(1,5))))
-sum(is.na(exprs(es[[1]])))
+set.seed(666)
+A <- generateRandomMAData(g = 20, perc.sig = 0.1, i = 3)
+cl <- lapply(A, function(a){factor(as.numeric(a$group)-1)})
+#generate some bad measurements
+exprs(A[[1]])[1,1] <- NA
+exprs(A[[1]])[4,2:4] <- NA
+exprs(A[[2]])[3,4:6] <- NA
+sapply(A, function(a){sum(is.na(exprs(a)))})
+A <- corrNA(A, method="madam", cl)
+sapply(A, function(a){sum(is.na(exprs(a)))})
 }
 \keyword{manip}

@@ -1,10 +1,10 @@
 Package: MADAM
 Type: Package
 Title: This package provides some basic methods for meta-analysis
-Version: 1.0-2
-Date: 2010-02-03
-Author: Karl Kugler
-Maintainer: Karl Kugler <karl.kugler@umit.at>
+Version: 1.1
+Date: 2010-08-16
+Author: Karl Kugler, Laurin Mueller, Matthias Wieser
+Maintainer: Karl Kugler <karl@eigenlab.net>
 Description: In this package we provide some basic utilities for
         performing meta-analysis. We included methods for dealing with
         missing values, or measurements with a variance of zero. For
@@ -12,11 +12,17 @@ Description: In this package we provide some basic utilities for
         model is integrated. Additionally did we implement a method for
         performing significance based methods proposed by Fisher and
         Rhodes. For visualizing the results three methods were added.
+        Some functions were taken from the GeneMeta and RankProd
+        packages in order to implement parallel versions of the
+        existing methods. Please refer to the original authors if you
+        make use of these implementations.
 License: LGPL
+URL: http://madam.r-forge.r-project.org
 LazyLoad: yes
-Depends: R (>= 2.9), Biobase (>= 2.4), snow, qvalue, RankProd,
-        RColorBrewer, GeneMeta, gplots, genefilter, impute
+Depends: R (>= 2.10), Biobase (>= 2.4), qvalue, RankProd, RColorBrewer,
+        GeneMeta, gplots, genefilter, impute
 Imports: RColorBrewer, GeneMeta, gplots, genefilter, impute
-Packaged: 2010-02-03 15:49:30 UTC; kuglerka
+Suggests: snow
+Packaged: 2011-04-11 09:31:24 UTC; kuglerka
 Repository: CRAN
-Date/Publication: 2010-02-03 21:03:24
+Date/Publication: 2011-04-11 15:24:24

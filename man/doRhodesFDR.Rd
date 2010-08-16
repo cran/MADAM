@@ -20,8 +20,8 @@ Number of permutations.
   \item{zero.subst}{
 Value to replace zeros with.
 }
-  \item{cluster}{
-Snow cluster object to perform permutations with.
+ \item{cluster}{
+A snow cluster object. If this package is used without parallel computing facilities, computing time may be much higher.
 }
 }
 \value{
@@ -33,27 +33,15 @@ Meta-analysis of microarrays: interstudy validation of gene expression profiles 
 Cancer Res. 2002 Aug 1;62(15):4427-33.
 }
 \author{
-Karl Kugler, UMIT
+Karl Kugler, karl@eigenlab.net
 }
 \examples{
-\dontrun{
 set.seed(123)
-es1 <- new("ExpressionSet", exprs=matrix(runif(100,1,10), nrow=10))
-rownames(exprs(es1)) <- LETTERS[1:10]
-es2 <- new("ExpressionSet", exprs=matrix(runif(100,1,10), nrow=10))
-rownames(exprs(es2)) <- LETTERS[1:10]
-es3 <- new("ExpressionSet", exprs=matrix(runif(100,1,10), nrow=10))
-rownames(exprs(es3)) <- LETTERS[1:10]
-A <- list(es1, es2, es3)
-cl=list(factor(c(rep(0,5), rep(1,5))),
-factor(c(rep(0,5), rep(1,5))), factor(c(rep(0,5), rep(1,5))))
-cl.val=c(0,1)
-clust <- makeCluster(1, type="MPI")
-pval <- multiTtest(A, cl, val=cl.val, alternative= "two.sided")
+A <- generateRandomMAData(g = 100, perc.sig = 0.1, i = 3, k = rep(5, 6))
+cl <- lapply(A, function(a){factor(as.numeric(a$group)-1)})
+pval <- multiTtest(A, cl, alternative= "two.sided")
 rownames(pval) <- rownames(exprs(A[[1]]))
-res <- doRhodesFDR(data=pval, B = 10, zero.subst = default.zero.subst, cluster = clust)
-stopCluster(clust)
+res <- doRhodesFDR(data=pval, B = 10, zero.subst = default.zero.subst, cluster = NULL)
 res
-}
 }
 \keyword{univar}

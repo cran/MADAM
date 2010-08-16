@@ -39,17 +39,13 @@ color for plotting points
 Plots a MA-Volcano plot.
 }
 \author{
-Karl Kugler, UMIT
+Karl Kugler, karl@eigenlab.net
 }
 \examples{
-library(genefilter)
-
 set.seed(123)
 A <- generateRandomMAData(g = 100, perc.sig = 0.1, i = 3, k = rep(5, 6))
-cl=list(factor(c(rep(0,5), rep(1,5))), 
-factor(c(rep(0,5), rep(1,5))), factor(c(rep(0,5), rep(1,5))))
-cl.val=c(0,1)
-res <- doES(A, cl, val = cl.val, useREM = TRUE, nperm = 10)
+cl <- lapply(A, function(a){factor(as.numeric(a$group)-1)})
+res <- doES(A, cl, useREM = TRUE, nperm = 10, cluster = NULL)
 plotMAVolcano(data.frame(res$g2up$MUvals, res$g2up$FDR))
 }
 \keyword{ hplot }

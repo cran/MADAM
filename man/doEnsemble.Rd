@@ -8,7 +8,7 @@ Method to perform an ensemble approach for meta-analysis.
 This function allows performing a complete meta-analysis for a set of studies. Including an effect size, a significance and a ranking approach. Additionally an exploratory ensemble approach may be performed. The user may choose to plot some figures and report the complete results into a directory.
 }
 \usage{
-doEnsemble(A, cl, val = c(0, 1), feature.names = NULL, do.FM = TRUE, 
+doEnsemble(A, cl, cl.val = c(0, 1), feature.names = NULL, do.FM = TRUE, 
 perm.ES = 1000, perm.RP = 1000, perm.ENS.RP = 1000, perm.ENS.RS = 1000, 
 do.ENS.FM = TRUE, cluster = NULL, useREM = TRUE, results.dir = getwd(), 
 write.all = FALSE, plot.fdr = FALSE, plot.ranks = FALSE)
@@ -20,7 +20,7 @@ A list of ExpressionSet objects, all sharing the same feature names.
   \item{cl}{
 A list of factor variables, labeling the class for each of the samples in A.
 }
-  \item{val}{
+  \item{cl.val}{
 Level values of cl (default: 0,1)).
 }
   \item{feature.names}{
@@ -44,8 +44,8 @@ Number of permutations for Ensemble rank sum approach.
   \item{do.ENS.FM}{
 Doing Ensemble Fisher-Method.
 }
-  \item{cluster}{
-snow object (for parallel computing)
+ \item{cluster}{
+A snow cluster object. If this package is used without parallel computing facilities, computing time may be much higher.
 }
   \item{useREM}{
 boolean parameter indicating whether to use ES REM model (default is TRUE)
@@ -68,34 +68,20 @@ Plot heatmaps for single MA methods.
 The method returns the list of objects with all the results for both up- and downregulation. Wording for upregulation in the second group is g2up, and for downregulation in the second group is referred to as g2down. Additionally the target directory for all resulting output files is reported.
 }
 \author{
-Karl Kugler, UMIT
+Karl Kugler, karl@eigenlab.net
 }
 \note{
 When performing an ensemble approach with meta-analysis data coming from the same set of studies, the result has to be considered to be biased towards the alternative hypothesis due to correlations within the data. The result has then to be considered for exploratory use only!
 }
 \examples{
-#examples using Rmpi were set inactive for automated testing
-#for increased compability with  Windows
-\dontrun{
-library(genefilter)
-library(snow)
-library(Rmpi)
-
 set.seed(123)
-es1 <- new("ExpressionSet", exprs=matrix(runif(100,1,10), nrow=10))
-es2 <- new("ExpressionSet", exprs=matrix(runif(100,1,10), nrow=10))
-es3 <- new("ExpressionSet", exprs=matrix(runif(100,1,10), nrow=10))
-A <- list(es1, es2, es3)
-cl=list(factor(c(rep(0,5), rep(1,5))), 
-factor(c(rep(0,5), rep(1,5))), factor(c(rep(0,5), rep(1,5))))
-cl.val=c(0,1)
-clust <- makeCluster(1, type="MPI")
-res <- doEnsemble(A, cl, val=c(0,1), feature.names=NULL, do.FM= TRUE, perm.ES=10, 
-perm.RP=10, perm.ENS.RP= 10, perm.ENS.RS= 10, do.ENS.FM= TRUE, cluster= clust, useREM= TRUE, 
-results.dir=getwd(), write.all=FALSE, plot.fdr= FALSE, plot.ranks=FALSE)
+A <- generateRandomMAData(g = 100, perc.sig = 0.1, i = 3, k = rep(5, 6))
+cl <-  lapply(A, function(a){factor(as.numeric(a$group)-1)})
+res <- doEnsemble(A, cl, feature.names=NULL, do.FM= TRUE, 
+	   perm.ES=10, perm.RP=10, perm.ENS.RP= 10, perm.ENS.RS= 10, 
+	   do.ENS.FM= TRUE, cluster= NULL, useREM= TRUE, 
+	   results.dir=getwd(), write.all=FALSE, plot.fdr= FALSE, plot.ranks=FALSE)
 names(res)
-stopCluster(clust)
-}
 }
 \keyword{ manip }
 

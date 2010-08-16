@@ -22,20 +22,26 @@ Percentage of overall significant features.
 Number of studies.
 }
   \item{k}{
-Number of samples for each of the two groups/study. If set to 0, numbers are sampled randomly by function \code{\link{getNbSamples}}.
+Number of samples for each of the two groups/study. If set to 0, numbers are sampled randomly
 }
   \item{err.span}{
 Span for var in error.
 }
 }
 \value{
+A list of ExpressionSet Objets with features names "ART". Artificially down- or upregulated features are marked with "_D" or "_U"
+}
+\details{
 In order to validate our ensemble approach, two data models were merged and adapted for our
 purposes. This model driven approach enabled the testing and validating of our work on three
 levels: First, on the single study level, second on the information derived from the meta-analysis, and third
 we were able to inspect our results on the ensemble approach level. The basic assumption in this model is,
-that in a set of G features, every feature has a baseline concentration, being the same for all studies.
-
+that in a set of G features, every feature has a baseline concentration, being the same for all studies. 
 This baseline concentration may differ from study to study and from sample to sample.
+
+If no study size information is provided they are sampled as: between 8 and 16 with probability 0.6, with probability 0.1 between 5 and 14 and with probability 0.3 between 15 and 30.
+
+
 }
 \references{
 Hong F, Breitling R: A comparison of meta-analysis methods for detecting differentially expressed genes in microarray experiments. Bioinformatics 2008, 24(3):374-382
@@ -45,7 +51,7 @@ microarray datasets: application using two microarray datasets pertaining to chr
 nephropathy. BMC Genomics 2008, 9:98
 }
 \author{
-Karl Kugler, UMIT
+Karl Kugler, karl@eigenlab.net
 }
 \examples{
 A <- generateRandomMAData(g = 100, perc.sig = 0.1, i = 3, k = 0)

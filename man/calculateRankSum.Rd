@@ -20,7 +20,7 @@ A matrix containing rank information from several studies. Features are stored i
 The number of permutations used to assess the significance of the rank sum.
 }
   \item{cluster}{
-A snow cluster object. If this package is used without parallel computing facilities, a single core snow cluster has to be established nevertheless. Leaving it to NULL (default) will result in an error.
+A snow cluster object. If this package is used without parallel computing facilities, computing time may be much higher.
 }
 }
 \value{
@@ -37,23 +37,15 @@ Hong F, Breitling R, McEntee CW, Wittner BS, Nemhauser JL, Chory J.
 Bioinformatics. 2006 Nov 15;22(22):2825-7. Epub 2006 Sep 18.
 }
 \author{
-Karl Kugler, UMIT
+Karl Kugler, karl@eigenlab.net
 }
 \seealso{
-\code{\link{calculateRankProduct}}, \code{\link{doRP}}
+\code{\link{calculateRankProduct}}
 }
 \examples{
-#examples using Rmpi were set inactive for automated testing
-#for increased compability with  Windows
-\dontrun{
-library(snow)
-library(Rmpi)
 set.seed(123)
 M <- sapply(1:5, sample, x=1:10, size=10)
-clust <- makeCluster(1, type="MPI")
-res <- calculateRankSum(data=M, B = 100, cluster = clust)
-stopCluster(clust)
+res <- calculateRankSum(data=M, B = 100, cluster = NULL)
 res
-}
 }
 \keyword{ univar }

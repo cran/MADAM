@@ -35,7 +35,7 @@ a plot
 A ranklist heatmap is plotted using the function \code{heatmap.2} from the \code{gplots} package. Clustering is done using the Euclidian distance.
 }
 \author{
-Karl Kugler, UMIT
+Karl Kugler, karl@eigenlab.net
 }
 \seealso{
 gplots::heatmap.2
@@ -44,6 +44,7 @@ gplots::heatmap.2
 set.seed(123)
 M <- sapply(1:5, sample, x=1:100, size=100)
 plotHeatMap(M)
-plotHeatMap(M, title = "", top.col = NULL, side.col = NULL, col = rainbow(nrow(M)))
+plotHeatMap(M, title = "", top.col = NULL, side.col = NULL, 
+			col = rainbow(nrow(M)))
 }
 \keyword{ hplot }

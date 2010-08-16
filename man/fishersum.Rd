@@ -24,7 +24,7 @@ Statistical Methods for Research Workers.
 Oliver & Boyd, Edinburgh 1925.
 }
 \author{
-Karl Kugler, UMIT
+Karl Kugler, karl@eigenlab.net
 }
 \examples{
 set.seed(123)

@@ -1,0 +1,11 @@
+citEntry(entry = "Article",
+         "author" = "{Karl G Kugler and Laurin AJ Mueller and Armin Graber",
+         "title" = "MADAM - An open source meta-analysis toolbox for R and Bioconductor.",
+         journal = "Source Code Biol Med",
+         volume = "5",
+         year = "2010",
+         issn = "1367-4803",
+         pages = "3",
+	 textVersion = " Kugler KG, Mueller LA, Graber A: MADAM - An Open Source Toolbox for Meta-Analysis. Source Code for Biology and Medicine 2010, 5:3"
+) 
+

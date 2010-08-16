@@ -8,7 +8,7 @@ Function for calling RankProduct meta-analysis method by Breitling.
 Class to wrap parameters for Rank Product Meta-Analysis by Breilting.
 }
 \usage{
-doRP(A, cl, val = c(0, 1), nperm = 1000, gene.names = NULL)
+doRP(A, cl, cl.val = c(0, 1), nperm = 1000, gene.names = NULL, cluster = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -18,7 +18,7 @@ List of ExpressionSets.
   \item{cl}{
 List classes to be tested for first class. 
 }
-  \item{val}{
+  \item{cl.val}{
 Level values of cl (default: 0,1)). First sample of each study has to be of first type.
 }
   \item{nperm}{
@@ -26,6 +26,9 @@ Number of permutations to calculate FDR (default is 1000)
 }
   \item{gene.names}{
 If not provided within the list of ExpressionSets, feature names can be set here.
+}
+ \item{cluster}{
+A snow cluster object. If this package is used without parallel computing facilities, computing time may be much higher.
 }
 }
 \value{
@@ -39,7 +42,7 @@ List of significances and ranks for both up- and downregulation.
 
 }
 \author{
-Karl Kugler, UMIT
+Karl Kugler, karl@eigenlab.net
 }
 \note{
 Since the current implementation of MADAM only wraps to the method within the \pkg{RankProd} package, it cannot be run in a parallel manner.
@@ -50,17 +53,9 @@ Since the current implementation of MADAM only wraps to the method within the \p
 }
 \examples{
 set.seed(123)
-es1 <- new("ExpressionSet", exprs=matrix(runif(100,1,10), nrow=10))
-rownames(exprs(es1)) <- LETTERS[1:10]
-es2 <- new("ExpressionSet", exprs=matrix(runif(100,1,10), nrow=10))
-rownames(exprs(es2)) <- LETTERS[1:10]
-es3 <- new("ExpressionSet", exprs=matrix(runif(100,1,10), nrow=10))
-rownames(exprs(es3)) <- LETTERS[1:10]
-A <- list(es1, es2, es3)
-cl=list(factor(c(rep(0,5), rep(1,5))),
-factor(c(rep(0,5), rep(1,5))), factor(c(rep(0,5), rep(1,5))))
-cl.val=c(0,1)
-res <- doRP(A, cl=cl, val = cl.val, nperm = 10)
+A <- generateRandomMAData(g = 100, perc.sig = 0.1, i = 3, k = rep(5, 6))
+cl <- lapply(A, function(a){factor(as.numeric(a$group)-1)})
+res <- doRP(A, cl=cl, nperm = 10, cluster = NULL)
 res
 }
 \keyword{univar}
