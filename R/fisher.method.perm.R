@@ -23,7 +23,7 @@ fisher.method.perm <- function(pvals, p.corr=c("bonferroni","BH","none"), zero.s
         fisher.sum(myp)$S
       }))
     } else {
-      S.rand <- unlist(multicore::mclapply(1:B, function(b){
+      S.rand <- unlist(mclapply(1:B, function(b){
         ##get non NA p-values from studies contributing to S
         myp <- sapply(good.p, function(pc){
           sample(na.exclude(pvals[,pc]),1)

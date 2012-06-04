@@ -9,7 +9,8 @@ entries ranked ascendingly by their p-value. This allows assesing how the distri
 compare between different studies or against a meta-analysis.
 }
 \usage{
-plotPvsRank(pvals, s.legend = NULL, colos = NULL, ylim = NULL, log = "y", plot.title = NULL, zero.sub = 1e-05, legend.pos = "topright", lty = 1, lwd = 2)
+plotPvsRank(pvals, s.legend = NULL, colos = NULL, ylim = NULL, log =
+"y", plot.title = NULL, zero.sub = 1e-05, legend.pos = "topright", lty = 1, lwd = 2)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -87,6 +88,7 @@ plotPvsRank(pvals, lwd=c(rep(1,10),2), lty=c(rep(1,10),2))
 plotPvsRank(pvals, log="x", lwd=2, lty=1)
 
 #inverse y,  place legend at the bottom, and add title
-plotPvsRank(pvals, log="y", ylim=c(0.0001,1),lwd=2, lty=1, legend.pos="bottomright", plot.title="my title")
+plotPvsRank(pvals, log="y", ylim=c(0.0001,1),lwd=2, lty=1,
+legend.pos="bottomright", plot.title="my title")
 
 }

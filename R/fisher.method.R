@@ -11,7 +11,7 @@ fisher.method <- function(pvals, method=c("fisher"), p.corr=c("bonferroni","BH",
   if(is.null(mc.cores)){
     fisher.sums <- data.frame(do.call(rbind, apply(pvals, 1, fisher.sum, zero.sub=zero.sub, na.rm=na.rm)))
   } else {
-    fisher.sums <- multicore::mclapply(1:nrow(pvals), function(i){
+    fisher.sums <- mclapply(1:nrow(pvals), function(i){
       fisher.sum(pvals[i,], zero.sub=zero.sub, na.rm=na.rm)
     }, mc.cores=mc.cores)
     fisher.sums <- data.frame(do.call(rbind, fisher.sums))

@@ -14,7 +14,8 @@ Derive a p-value for a summary statistic of p-values by permutation
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-fisher.method.perm(pvals, p.corr = c("bonferroni", "BH", "none"), zero.sub = 1e-05, B = 10000, mc.cores = NULL, blinker = 1000)
+fisher.method.perm(pvals, p.corr = c("bonferroni", "BH", "none"),
+zero.sub = 1e-05, B = 10000, mc.cores = NULL, blinker = 1000)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -34,7 +35,7 @@ Number of random statistics
 }
   \item{mc.cores}{
 Number of cores used for calculating the permutations. If not
-\code{NULL} the \code{multicore} package is used for parallelization
+\code{NULL} the \code{parallel} package is used for parallelization
 with the given number of cores.
 }
 \item{blinker}{
@@ -49,7 +50,7 @@ with the given number of cores.
    For large data sets and/or large \code{B} we strongly recommend using
    the \code{mc.cores} option as the calculation will otherwise be
    computationally demanding. This will call the \code{mclapply}
-   function from the \cite{multicore} package, which you will have to
+   function from the \cite{parallel} package, which you will have to
    install in that case.
 
    By default a blinker (a small string "=") is shown after each 1000
@@ -84,6 +85,6 @@ Karl Kugler <karl@eigenlab.net>
   pp <- matrix(c(runif(20),c(0.001,0.02,0.03,0.001)), ncol=4)
   fisher.method.perm(pp, B=10, blinker=1)
   \dontrun{
-    fisher.method.perm(pp, B=10000, mc.cores=3, blinker=1) #use multicore
+    fisher.method.perm(pp, B=10000, mc.cores=3, blinker=1) #use parallel
   }
 }
