@@ -1,8 +1,3 @@
-importFrom(genefilter, rowSds)
-importFrom(genefilter, rowttests)
-importFrom(RColorBrewer, brewer.pal)
-importFrom(gplots, heatmap.2)
-importFrom(impute, impute.knn)
-exportPattern("^[[:alpha:]]+")
+exportPattern("^[^\\.]")
 
 

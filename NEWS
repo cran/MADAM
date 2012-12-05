@@ -1,0 +1,2 @@
+1.2
+From version 1.2 we have started to completely redesign the package. This will affect both the range of functions as well as the implementation of existing functions. Therefore, code from version prior 1.2 will NOT be compatible with the newly implemented one. We decided to start completely new, which means that we will gradually add new functions with each new release. 1.2 contains three functions for dealing with the combination of p-values.

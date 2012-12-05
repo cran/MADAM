@@ -1,0 +1,12 @@
+19c8de8f8b4b55068f69069deeec140c *DESCRIPTION
+75387ec062d153cacdc64dcbd2ccc0a7 *NAMESPACE
+648c68d767c3cee87c0a092e4b076d2c *NEWS
+714ac83a73790f8808f728e904bae883 *R/fisher.method.R
+b25e562c14af272408e0732ad509d9f8 *R/fisher.method.perm.R
+2b050e1265dbc459ec2fa0b412383fa6 *R/fisher.sum.R
+ef4ea020fd876f7ff5e03f4029068f52 *R/plot.PvsRank.R
+5e82271a345cad008fbc136ec0ecdba5 *inst/CITATION
+96a9f87d26dd9f4336dcdbf3ce893d76 *man/fisher.method.Rd
+a76ef9a53f6a8b3785aa1ac1188d0b0a *man/fisher.method.perm.Rd
+69e6e688a967ed2ef772015757012d72 *man/fisher.sum.Rd
+74b6436a15563b0255e1b58866c70be7 *man/plotPvsRank.Rd
